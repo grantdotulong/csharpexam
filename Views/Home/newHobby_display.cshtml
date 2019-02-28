@@ -1,0 +1,16 @@
+@model Hobby;
+<h1>New Hobby</h1>
+<a href="/Hobby">Dashboard</a>
+<a href="/">Logout</a>
+<form asp-action="CreateHobby" asp-controller="Home" method="POST">
+    <span asp-validation-for="HobbyName"></span><br>
+    <label asp-for="HobbyName"></label><br>
+    <input asp-for="HobbyName"><br>
+
+    <span asp-validation-for="Description"></span><br>
+    <label asp-for="Description"></label><br>
+    <input asp-for="Description"><br>
+
+    <input type="hidden" value=@ViewBag.ActiveUser.UserId asp-for="UserId">
+    <input type="submit" value="Create">
+</form>

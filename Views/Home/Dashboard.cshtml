@@ -1,0 +1,47 @@
+<head>
+    <link rel="stylesheet" href="~/css/table.css" />
+</head>
+@model Dashboard;
+<h1>Hobbies</h1>
+<p>Hi @Model.ActiveUser.FirstName!</p>
+<a href="/">Logout</a>
+
+<table>
+    <th>Name</th>
+    <th>Enthusiasts</th>
+    @foreach(var hobby in Model.AllHobbies)
+    {
+        <tr>
+            <td><a href="/Hobby/@hobby.HobbyId">@hobby.HobbyName</a></td>
+            <td>@hobby.Users.Count</td>
+        </tr>
+    }
+</table>
+@{
+    int noviceCounter = 0;
+    int intermediateCounter = 0;
+    int expertCounter = 0;
+}
+
+<div class="scoreboard">
+    <h4>Top Novice</h4>
+        @foreach(var novicehobby in Model.Novice)
+        {
+            noviceCounter++;
+            <p>@noviceCounter. @novicehobby.HobbyName</p>
+        }
+    <h4>Top Intermediate</h4>
+        @foreach(var intermediatehobby in Model.Intermediate)
+        {
+            intermediateCounter++;
+            <p>@intermediateCounter. @intermediatehobby.HobbyName</p>
+        }
+    <h4>Top Expert</h4>
+    @foreach(var experthobby in Model.Expert)
+        {
+            expertCounter++;
+            <p>@expertCounter. @experthobby.HobbyName</p>
+        }
+</div>
+<div></div>
+<a href="/Hobby/New">New Hobby</a>

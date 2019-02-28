@@ -1,0 +1,13 @@
+@model Hobby;
+<h1>Edit a Hobby</h1>
+<form asp-action="EditHobby" asp-controller="Home" method="POST">
+    <span asp-validation-for="HobbyName"></span><br>
+    <label asp-for="HobbyName"></label><br>
+    <input asp-for="HobbyName" value=@Model.HobbyName><br>
+
+    <span asp-validation-for="Description"></span><br>
+    <label asp-for="Description"></label><br>
+    <input asp-for="Description" value=@Model.Description><br>
+    <input type="hidden" value=@ViewBag.ActiveUser.UserId>
+    <input type="submit" vlue="Edit">
+</form>

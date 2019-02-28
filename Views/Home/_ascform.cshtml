@@ -1,0 +1,11 @@
+@model Association;
+<form asp-action="NewAsc" asp-controller="Home" method="POST">
+    <select asp-for="Proficiency">
+        <option value="Novice">Novice</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Expert">Expert</option>
+    </select>
+    <input type="hidden" asp-for="UserId" value=@ViewBag.ActiveUser.UserId>
+    <input type="hidden" asp-for="HobbyId" value=@ViewBag.CurrentHobby.HobbyId>
+    <input type="submit" value="Add to Hobbies">
+</form>

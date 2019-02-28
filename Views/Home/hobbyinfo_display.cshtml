@@ -1,0 +1,42 @@
+<head>
+    <link rel="stylesheet" href="~/css/table.css" />
+</head>
+@model HobbyInfo;
+<h1>@Model.currentHobby.HobbyName - Created By: @Model.currentHobby.CreatedBy.FirstName @Model.currentHobby.CreatedBy.LastName</h1>
+<a href="/Hobby">Back</a>
+<h3>Description:</h3>
+<p>@Model.currentHobby.Description</p>
+@if(Model.currentHobby.CreatedBy == Model.currentUser)
+{
+    <a href="/Hobby/Edit/@Model.currentHobby.HobbyId">Edit Hobby</a>
+}
+<h3>@Model.currentHobby.HobbyName Enthusiasts</h3>
+<table>
+    <th>Name</th>
+    <th>Proficiency</th>
+    @foreach(var people in Model.currentHobby.Users)
+    {
+        <tr>
+            <td>@people.User.FirstName</td>
+            <td>@people.Proficiency</td>
+        </tr>
+    }
+</table>
+@{
+    bool doNotShowPartial = false;
+    foreach(var hobby in Model.currentUser.Hobbies)
+    {
+        if(hobby.Hobby == Model.currentHobby)
+        {
+            doNotShowPartial = true;
+        }
+    }
+}
+@if(doNotShowPartial is false)
+{
+    <partial name="_ascform" view-data="ViewData" model="Model.association"></partial>
+}
+else
+{
+    <h3>Notice: User already added this hobby.</h3>
+}
